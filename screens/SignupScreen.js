@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, CheckBox, Image, ScrollView } from 'react-native';
 
-const SignupScreen = ({ navigation }) => {
+const SignupScreen = ({navigation}) => {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,12 +12,12 @@ const SignupScreen = ({ navigation }) => {
     const [users, setUsers] = useState([]);
 
     const handleSignup = () => {
-        if (userName && email && password && agreeTerms) {
-            const newUser = { userName, email, password };
-            setUsers([...users, newUser]);
+        if(userName && email && password && agreeTerms){
+            const newUser = {userName, email, password};
+            setUsers([...users,newUser]);
             alert('Đăng ký thành công!');
-            navigation.navigate('Welcome', { users: [...users, newUser] });
-        } else {
+            navigation.navigate('Welcome',{users:[...users,newUser]});
+        } else{
             alert('Vui lòng tích vào ô');
         }
     };
@@ -71,21 +71,21 @@ const SignupScreen = ({ navigation }) => {
                     />
                 </View>
 
-                {/* Terms and Conditions */}
+                {/* Checkbox */}
                 <View style={styles.checkboxContainer}>
-                    <CheckBox value={agreeTerms} onValueChange={setAgreeTerms} />
-                    <Text style={styles.checkboxLabel}>I agree to the Terms and Conditions</Text>
+                    <CheckBox
+                        value={agreeTerms}
+                        onValueChange={setAgreeTerms}
+                    />
+                    <Text style={styles.checkboxLabel}>
+                        I agree with <Text style={styles.link}>Terms & Conditions</Text>
+                    </Text>
                 </View>
 
-                {/* Signup Button */}
-                <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
-                    <Text style={styles.signupButtonText}>Sign Up</Text>
+                {/* Continue Button */}
+                <TouchableOpacity style={styles.button} onPress={handleSignup}>
+                    <Text style={styles.buttonText}>Continue</Text>
                 </TouchableOpacity>
-
-                {/* Login Link */}
-                <Text style={styles.loginLink} onPress={() => navigation.navigate('Home')}>
-                    Already have an account? Login
-                </Text>
             </View>
         </ScrollView>
     );
@@ -93,20 +93,23 @@ const SignupScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     scrollView: {
-        flex: 1,
         backgroundColor: '#fff',
     },
     container: {
-        padding: 20,
+        flex: 1,
         alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+        padding: 20,
+        marginTop: 37,
     },
     image: {
-        width: 120,
-        height: 120,
+        width: 84,
+        height: 82,
         marginBottom: 20,
     },
     title: {
-        fontSize: 24,
+        fontSize: 32,
         fontWeight: 'bold',
         marginBottom: 10,
     },
@@ -118,48 +121,56 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth: 1,
-        borderColor: '#ccc',
         width: '100%',
-        marginBottom: 15,
+        maxWidth: 350,
+        marginBottom: 12, 
+        borderWidth: 1,
+        borderColor: '#bababa',
+        borderRadius: 12,
+        paddingHorizontal: 10,
     },
     inputFocused: {
-        borderColor: '#00bdd6',
+        borderColor: '#000',
     },
     icon: {
-        width: 24,
-        height: 24,
+        width: 20,
+        height: 20,
         marginRight: 10,
     },
     input: {
         flex: 1,
-        height: 40,
-        color: '#000',
+        padding: 10,
+        outlineWidth: 0,
     },
     checkboxContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 20,
+        width: '100%',
+        maxWidth: 350,
+        marginBottom: 15,
+        marginLeft: 5,
     },
     checkboxLabel: {
         marginLeft: 10,
-        color: '#000',
+        fontSize: 14,
+        color: '#777',
     },
-    signupButton: {
-        backgroundColor: '#00bdd6',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 20,
-        alignItems: 'center',
+    link: {
+        color: '#007BFF', 
+    },
+    button: {
         width: '100%',
+        maxWidth: 350,
+        backgroundColor: '#00bdd6', 
+        borderRadius: 12,
+        paddingVertical: 12,
+        alignItems: 'center',
+        marginTop: 10, 
     },
-    signupButtonText: {
+    buttonText: {
         color: '#fff',
+        fontSize: 16,
         fontWeight: 'bold',
-    },
-    loginLink: {
-        marginTop: 20,
-        color: '#00bdd6',
     },
 });
 
