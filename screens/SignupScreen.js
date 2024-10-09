@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, CheckBox, Image, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Switch, Image, ScrollView } from 'react-native';
 
-const SignupScreen = ({navigation}) => {
+const SignupScreen = ({ navigation }) => {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -12,18 +12,18 @@ const SignupScreen = ({navigation}) => {
     const [users, setUsers] = useState([]);
 
     const handleSignup = () => {
-        if(userName && email && password && agreeTerms){
-            const newUser = {userName, email, password};
-            setUsers([...users,newUser]);
+        if (userName && email && password && agreeTerms) {
+            const newUser = { userName, email, password };
+            setUsers(prevUsers => [...prevUsers, newUser]);
             alert('Đăng ký thành công!');
-            navigation.navigate('Welcome',{users:[...users,newUser]});
-        } else{
+            navigation.navigate('Welcome', { users: [...users, newUser] });
+        } else {
             alert('Vui lòng tích vào ô');
         }
     };
 
     return (
-        <ScrollView style={styles.scrollView}>
+        <ScrollView style={styles.scrollView} keyboardShouldPersistTaps='handled'>
             <View style={styles.container}>
                 <Image source={require('../assets/DATA/Image19.png')} style={styles.image} />
                 <Text style={styles.title}>Nice to see you!</Text>
@@ -73,7 +73,7 @@ const SignupScreen = ({navigation}) => {
 
                 {/* Checkbox */}
                 <View style={styles.checkboxContainer}>
-                    <CheckBox
+                    <Switch
                         value={agreeTerms}
                         onValueChange={setAgreeTerms}
                     />
