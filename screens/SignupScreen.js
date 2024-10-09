@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Switch, Image, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 
 const SignupScreen = ({ navigation }) => {
     const [userName, setUserName] = useState('');
@@ -72,15 +73,13 @@ const SignupScreen = ({ navigation }) => {
                 </View>
 
                 {/* Checkbox */}
-                <View style={styles.checkboxContainer}>
-                    <Switch
-                        value={agreeTerms}
-                        onValueChange={setAgreeTerms}
-                    />
-                    <Text style={styles.checkboxLabel}>
-                        I agree with <Text style={styles.link}>Terms & Conditions</Text>
-                    </Text>
-                </View>
+                <CheckBox
+                    title="I agree with Terms & Conditions"
+                    checked={agreeTerms}
+                    onPress={() => setAgreeTerms(!agreeTerms)}
+                    containerStyle={styles.checkboxContainer}
+                    textStyle={styles.checkboxLabel}
+                />
 
                 {/* Continue Button */}
                 <TouchableOpacity style={styles.button} onPress={handleSignup}>
@@ -143,20 +142,13 @@ const styles = StyleSheet.create({
         outlineWidth: 0,
     },
     checkboxContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
         width: '100%',
         maxWidth: 350,
         marginBottom: 15,
-        marginLeft: 5,
     },
     checkboxLabel: {
-        marginLeft: 10,
         fontSize: 14,
         color: '#777',
-    },
-    link: {
-        color: '#007BFF', 
     },
     button: {
         width: '100%',
