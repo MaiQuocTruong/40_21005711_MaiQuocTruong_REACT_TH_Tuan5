@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
         height: 10,
         borderRadius: 5,             
         borderWidth: 1,              
-        borderColor: '#00bdd6',      
-        marginHorizontal: 5,         
+        borderColor: '#00bdd6',     
+        marginHorizontal: 5,        
     },
     activeDot: {
         backgroundColor: '#00bdd6',     
