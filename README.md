@@ -17,6 +17,7 @@ Trước khi bắt đầu, hãy đảm bảo rằng bạn đã cài đặt các 
 - **Install navigation và icon(fontawesome)**: Chạy các lệnh sau:
   ```bash
   npm install @react-navigation/native @react-navigation/stack react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+  npm install react-native-elements
   npm install react-native-vector-icons
 
 - **HƯỚNG DẪN CHẠY PROJECT TRÊN VSCODE**: Chạy các lệnh sau:
